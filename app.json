@@ -1,21 +1,25 @@
 {
   "expo": {
-    "name": "terre-haute-rxr-crossing-warning-system",
-    "slug": "snack-debeb22b-25e3-459f-92c5-5b6d3805ab99",
+    "name": "Terre Haute Train App",
+    "slug": "terre-haute-train-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.eric.smith9.snackdebeb22b25e3459f92c55b6d3805ab99",
       "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Terre Haute Train App needs your location to show you the closest blocked railroad crossings.",
+        "NSLocationAlwaysUsageDescription": "Terre Haute Train App needs your location to alert you of blocked crossings nearby.",
         "ITSAppUsesNonExemptEncryption": false
       }
     },
@@ -24,14 +28,21 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "permissions": [
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "plugins": [
+      "expo-location",
+      "expo-notifications"
+    ],
     "extra": {
       "eas": {
-        "projectId": "4fdb20d4-8d7c-44e3-9152-2f8b5db7b0a6"
+        "projectId": "6d2c5684-ba5f-4da2-9cc6-1643ff734785"
       }
     }
   }
