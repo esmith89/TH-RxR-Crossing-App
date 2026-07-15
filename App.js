@@ -8,7 +8,7 @@ export default function App() {
   // If the user hasn't clicked past the warning yet, show the background image screen
   if (!acceptedWarning) {
     return (
-      <ImageBackground source={require('./assets/IMG_4428.png')} style={styles.background}>
+      <ImageBackground source={require('./assets/train-background.png')} style={styles.background} blurRadius={5}>
         <View style={styles.overlay}>
           <Text style={styles.warningText}>
             WARNING: This app relies on community reports. Always obey official railroad signals. Do not use this app while driving.
