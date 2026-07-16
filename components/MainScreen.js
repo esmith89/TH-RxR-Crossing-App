@@ -84,7 +84,6 @@ const customMapStyle = [
 ];
 
 export default function MainScreen() {
-  const [acceptedWarning, setAcceptedWarning] = useState(false);
   const [crossings, setCrossings] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [viewMode, setViewMode] = useState('list'); 
@@ -142,14 +141,6 @@ export default function MainScreen() {
 
   // 🚨 MASTER SECURITY GATE
   const attemptReportAction = (item) => {
-    // 1. Require Sign In -- TEMPORARILY DISABLED FOR TESTING
-    /*
-    if (!session) {
-      setShowAuthModal(true);
-      return false;
-    }
-    */
-
     // 2. Geofencing (10 Miles)
     if (!userLocation) {
       Alert.alert("Location Required", "Please enable location services in Settings to verify you are near this crossing.");
@@ -669,28 +660,6 @@ export default function MainScreen() {
     );
   };
 
-  if (!acceptedWarning) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#000' }}>
-        <Image 
-          source={{ uri: 'https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=1000&auto=format&fit=crop' }} 
-          style={{ position: 'absolute', width: '100%', height: '100%' }} 
-          resizeMode="cover"
-          blurRadius={3} 
-        />
-        <View style={{ position: 'absolute', width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.3)' }} />
-        <View style={[styles.safetyCard, { flex: 0, marginTop: 0, borderRadius: 24, width: '85%' }]}>
-          <MaterialCommunityIcons name="alert" size={50} color={COLORS.danger} style={{ marginBottom: 10 }} />
-          <Text style={styles.safetyTitle}>Safety Warning</Text>
-          <Text style={styles.safetyText}>Please ensure you are not driving while interacting with this app. Do not bypass lowered gates or ignore active railroad signals.</Text>
-          <TouchableOpacity style={styles.safetyBtn} onPress={() => setAcceptedWarning(true)}>
-            <Text style={styles.safetyBtnText}>I Understand</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -772,7 +741,7 @@ export default function MainScreen() {
                     </View>
                   ) : (
                     <View style={styles.customRxrContainer}>
-                       <Image source={require('../assets/rxr.jpg')} style={styles.customRxrImage} />
+                        <Image source={require('../assets/rxr.jpg')} style={styles.customRxrImage} />
                     </View>
                   )}
                   <Callout tooltip>
@@ -1030,12 +999,6 @@ const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: COLORS.background },
   centerContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   
-  safetyCard: { flex: 1, backgroundColor: COLORS.white, marginTop: -30, borderTopLeftRadius: 30, borderTopRightRadius: 30, padding: 30, alignItems: 'center', elevation: 15 },
-  safetyTitle: { fontSize: 26, fontWeight: '900', color: COLORS.textDark, marginBottom: 15 },
-  safetyText: { fontSize: 16, color: COLORS.textMuted, textAlign: 'center', lineHeight: 24, marginBottom: 30 },
-  safetyBtn: { backgroundColor: COLORS.primaryNavy, paddingVertical: 16, paddingHorizontal: 40, borderRadius: 12, width: '100%', alignItems: 'center' },
-  safetyBtnText: { color: COLORS.white, fontSize: 18, fontWeight: 'bold' },
-
   header: { backgroundColor: COLORS.primaryNavy, paddingTop: Platform.OS === 'ios' ? 60 : 40, paddingHorizontal: 20, paddingBottom: 15, borderBottomWidth: 3, borderBottomColor: COLORS.accentBlue },
   headerTop: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 15 },
   title: { fontSize: 22, fontWeight: '900', color: COLORS.white, marginLeft: 10, marginRight: 10, letterSpacing: 0.5 },
@@ -1078,7 +1041,6 @@ const styles = StyleSheet.create({
   starMarkerContainer: { alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.5, shadowRadius: 2, elevation: 4 },
   starMarkerIcon: { textShadowColor: 'rgba(0, 0, 0, 0.4)', textShadowOffset: { width: 0, height: 1 }, textShadowRadius: 2 },
   
-  // Custom Image Marker Styles (Resized smaller)
   customRxrContainer: { width: 18, height: 18, justifyContent: 'center', alignItems: 'center', shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.4, shadowRadius: 1, elevation: 3 },
   customRxrImage: { width: 18, height: 18, borderRadius: 9, resizeMode: 'cover' },
   

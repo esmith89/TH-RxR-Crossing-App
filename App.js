@@ -5,10 +5,14 @@ import MainScreen from './components/MainScreen';
 export default function App() {
   const [acceptedWarning, setAcceptedWarning] = useState(false);
 
-  // If the user hasn't clicked past the warning yet, show the background image screen
+  // Show the warning screen with the blurred background first
   if (!acceptedWarning) {
     return (
-      <ImageBackground source={require('./assets/train-background.png')} style={styles.background} blurRadius={5}>
+      <ImageBackground 
+        source={require('./assets/train-background.png')} 
+        style={styles.background}
+        blurRadius={5}
+      >
         <View style={styles.overlay}>
           <Text style={styles.warningText}>
             WARNING: This app relies on community reports. Always obey official railroad signals. Do not use this app while driving.
@@ -21,7 +25,7 @@ export default function App() {
     );
   }
 
-  // Once they click accept, load your actual map/list screen!
+  // Once accepted, load the main app map/list
   return <MainScreen />;
 }
 
