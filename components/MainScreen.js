@@ -437,8 +437,8 @@ export default function MainScreen() {
               if (rep.status === 'Stopped Train' || rep.status === 'Slow Train') {
                 Notifications.scheduleNotificationAsync({
                   content: {
-                    title: '🚂 Favorite Crossing Alert!',
-                    body: `${dispName} is currently: ${rep.status}.`,
+                    title: '🚂 Favorite Crossing Alert',
+                    body: `Heads up: A ${rep.status.toLowerCase()} was just reported at ${dispName}.`,
                     sound: true,
                   },
                   trigger: null, 
@@ -785,7 +785,7 @@ export default function MainScreen() {
             </View>
             <View style={styles.welcomeFeatureRow}>
               <MaterialCommunityIcons name="star" size={28} color={COLORS.accentBlue} />
-              <Text style={styles.welcomeFeatureText}><Text style={{fontWeight: 'bold'}}>Favorites:</Text> Tap the star next to any crossing you use frequently to pin it to the top of your list.</Text>
+              <Text style={styles.welcomeFeatureText}><Text style={{fontWeight: 'bold'}}>Favorites:</Text> Tap the star next to any crossing you use frequently to pin it to the top of your list. You will get a push notification if a blocked crossing is reported (unless it is during your designated "Quiet Hours").</Text>
             </View>
             <TouchableOpacity style={styles.welcomeBtn} onPress={handleCloseWelcome}>
               <Text style={styles.welcomeBtnText}>Get Started</Text>
